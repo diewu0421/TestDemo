@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<p>我是p标签</p>
+<a href="http://www.baidu.com">百度知道</a>
+<script>
+function loadXMLDoc()
+{
+    var arm = "file:///etc/hosts";
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {
+        xmlhttp=new XMLHttpRequest();
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        //alert("status is"+xmlhttp.status);
+        if (xmlhttp.readyState==4)
+        {
+              console.log(xmlhttp.responseText);
+        }
+    }
+    xmlhttp.open("GET",arm);
+    xmlhttp.send(null);
+}
+loadXMLDoc();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+include ':app', ':webview', ':coordinate', ':onactivityresult', ':turntabledemo', ':architecturedemo', ':inflatefactory'
+
