@@ -20,6 +20,9 @@ allprojects {
         google()
         jcenter()
 
+        maven {
+            url "https://github.com/zlwmaven/zlwFirstMaven/raw/master"
+        }
     }
 }
 

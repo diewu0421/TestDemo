@@ -8,6 +8,7 @@ import android.util.Log
 import kotlinx.android.synthetic.main.activity_main2.*
 import android.app.ActivityManager
 import android.content.Context
+import com.example.mylibrary.MyUtils
 
 
 class Main2Activity : AppCompatActivity() {
@@ -24,6 +25,7 @@ class Main2Activity : AppCompatActivity() {
 //                addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             })
         }
+
 
         tv3.setOnClickListener {
             Log.e("Main2Activity","set resultok")

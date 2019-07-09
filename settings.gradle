@@ -1,2 +1,2 @@
-include ':app', ':webview', ':coordinate', ':onactivityresult', ':turntabledemo', ':architecturedemo', ':inflatefactory'
+include ':app', ':webview', ':coordinate', ':onactivityresult', ':turntabledemo', ':architecturedemo', ':inflatefactory', ':mylibrary'
 
