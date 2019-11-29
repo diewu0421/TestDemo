@@ -1,17 +1,41 @@
+import com.sun.xml.internal.messaging.saaj.util.ByteOutputStream
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.31'
+    ext.kotlin_version = '1.3.41'
+    ext.navigationVersion = "2.0.0"
+    ext.roomVersion = '2.1.0-alpha06'
+    ext.fuel_version = '2.2.0'
     repositories {
         mavenCentral()
         google()
+        jcenter()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
 
+        maven {
+            url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/"
+        }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
+        maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build:gradle:3.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath "com.tencent.bugly:tinker-support:1.1.5"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+
+//        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.5'
+        classpath 'com.github.xuexiangjys.XAOP:xaop-plugin:1.0.4'
     }
 }
 
@@ -19,7 +43,19 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
 
+        maven {
+            url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/"
+        }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        maven {
+            url 'https://jitpack.io'
+        }
         maven {
             url "https://github.com/zlwmaven/zlwFirstMaven/raw/master"
         }
@@ -28,4 +64,51 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+//subprojects {
+//    println "subprojects configure for ${project.name}"
+//}
+//
+//allprojects {
+//    println "allProjects configure for ${project.name}"
+//    buildscript {
+//
+//    }
+//}
+
+//def output = new ByteOutputStream()
+//exec {
+//    commandLine("git","blame","./build.gradle")
+//    standardOutput  = output
+//}
+//println(output.toString())
+
+//subprojects {
+//    configurations.all {
+////        println("configurations = " + resolutionStrategy)
+//
+////        resolutionStrategy.eachDependency {
+//////            println("eachDependency = ${it.target}")
+////            if (it.requested.group == "com.yunji.library") {
+////                println it.target
+////                it.useVersion  "1.0.2"
+////            }
+////        }
+//        resolutionStrategy.force "com.yunji.library:mylibrary:1.0.3"
+//
+//    }
+//}
+
+subprojects {
+    configurations {
+
+        all {
+            resolutionStrategy.eachDependency {
+
+//                println("it = ${it.requested}")
+            }
+
+        }
+    }
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/welcome_fragment"
+            app:startDestination="@id/room_fragment">
+
+    <!--<fragment-->
+    <!--android:id="@+id/login_fragment"-->
+    <!--android:label="LoginFragment"-->
+    <!--tools:layout="@layout/login_fragment"-->
+    <!--android:name="com.example.architecturedemo.activity.ui.login.LoginFragment"-->
+    <!--/>-->
+    <fragment
+            android:name="com.example.architecturedemo.fragment.WelcomeFragment"
+            android:label="WelComeFragment"
+            android:id="@+id/welcome_fragment"
+            tools:layout="@layout/welcome_fragment"
+    >
+        <action android:id="@+id/action_welcome_fragment_to_loginFragment"
+                app:destination="@id/loginFragment"
+        />
+    </fragment>
+
+    <fragment android:id="@+id/loginFragment"
+              android:name="com.example.architecturedemo.activity.ui.login.LoginFragment"
+              android:label="LoginFragment"
+              tools:layout="@layout/register_fragment">
+
+        <argument android:name="name"
+                  android:defaultValue="zenglw default value"
+                  app:argType="string"
+        />
+        <action android:id="@+id/action_loginFragment_to_registerFragment" app:destination="@id/registerFragment"/>
+
+    </fragment>
+    <fragment android:id="@+id/registerFragment" android:name="com.example.architecturedemo.fragment.RegisterFragment"
+              android:label="RegisterFragment"/>
+
+    <fragment android:id="@+id/room_fragment"
+              android:name="com.example.architecturedemo.fragment.RoomFragment"
+              android:label="RoomFragment"
+        />
+</navigation>

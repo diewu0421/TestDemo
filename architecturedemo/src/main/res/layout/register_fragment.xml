@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable name="name" type="androidx.databinding.ObservableField&lt;String&gt;"/>
+
+        <variable name="age" type="Integer"/>
+    </data>
+    <FrameLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragment.RegisterFragment">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@{name}"/>
+
+        <!--<com.example.architecturedemo.view.DatabindingTestView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="100dp"-->
+        <!--app:set="@{`niadfafasdf`}"-->
+        <!--android:id="@+id/db_test_view"-->
+        <!--/>-->
+
+        <!--android:zhangphiltoast="@{name}"-->
+        <com.example.architecturedemo.view.MyView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{name}"
+                android:layout_marginTop="100dp"
+                app:age="@{23}"
+                app:name="@{name}"
+        />
+    </FrameLayout>
+</layout>

@@ -1,19 +1,20 @@
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.internal.api.ApkVariantOutputImpl
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-android-extensions")
 }
 
-infix fun BaseExtension.complie(version: Int) {
+infix fun BaseExtension . complie(version: Int) {
     compileSdkVersion(version)
 }
 fun getApkVersionName(): String {
 
     val stout = org.apache.commons.io.output.ByteArrayOutputStream()
     exec {
-        commandLine(listOf("git","describe","--abbrev=0","--tags"))
+        commandLine(listOf("git", "describe", "--abbrev=0", "--tags"))
         standardOutput = stout
     }
     println("apkverisonname = ${stout.toString()}")
@@ -34,7 +35,7 @@ android {
         targetSdkVersion(28)
         versionCode = 1
         versionName = getApkVersionName()
-        resConfigs("zh","xxxhdpi")
+        resConfigs("zh", "xxxhdpi")
     }
 
     lintOptions {
@@ -44,55 +45,61 @@ android {
 
     buildTypes {
         create("tx") {
-            manifestPlaceholders.put("name","zlw")
+            manifestPlaceholders.put("name", "zlw")
         }
     }
 
     adbOptions {
-        installOptions("-r","-d","-t")
+//        installOptions("-r","-d","-t")
     }
 
-    flavorDimensions("zlw")
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+
+    flavorDimensions("abi")
 
     productFlavors {
 
         create("hw") {
 
             manifestPlaceholders.put("name", "hw")
-            setDimension("zlw")
+            setDimension("abi")
 
             resValue("string", "yj_found_chinese", "我是华为")
             buildTypes.getByName("release") {
                 resValue("string", "yj_found_chinese", "我是华为release")
-                println("\n------------------------------------------------\nhw buildtypes is ${this}")
+//                println("\n------------------------------------------------\nhw buildtypes is ${this}")
             }
 
             buildTypes.getByName("debug") {
                 resValue("string", "yj_found_chinese", "我是华为debug")
-                println("\n------------------------------------------------\nhw buildtypes is ${this}")
+//                println("\n------------------------------------------------\nhw buildtypes is ${this}")
 
                 //配置混淆
-                isMinifyEnabled = true
-                isShrinkResources = true
-                proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"),"proguard-rules.pro")
+//                isMinifyEnabled =true
+//                isShrinkResources =false
+                proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             }
 
         }
 
-        create("xiaomi") {
-            setDimension("zlw")
-            manifestPlaceholders["name"] = "xiaomi"
-            resValue("string", "yj_found_chinese", "我是小米")
-        }
+//        create("xiaomi") {
+//            setDimension("version")
+//            manifestPlaceholders["name"] = "xiaomi"
+//            resValue("string", "yj_found_chinese", "我是小米")
+//        }
     }
 
 
     productFlavors.all {
-        println("productFlavors = $this")
+//        println("productFlavors = $this")
     }
 
     buildTypes.all {
-        println("buildtype = $this")
+//        println("buildtype = $this")
     }
 
     dataBinding {
@@ -109,6 +116,19 @@ android {
         }
     }
 
+//    project.afterEvaluate {
+//        tasks.getByName("preHwXiaomiReleaseBuild") {
+//            doFirst {
+//                println("生成一个配置文件:")
+//                val file = file("./config.txt")
+//                file.outputStream().use {
+//                    it.write("preHwXiaomiReleaseBuild".toByteArray())
+//                }
+//
+//            }
+//        }
+//    }
+
 }
 
 repositories {
@@ -122,14 +142,15 @@ dependencies {
 
     implementation(fileTree("include" to "['*.jar']", "dir" to "libs"))
     implementation(
-        group = "org.jetbrains.kotlin",
-        name = "kotlin-stdlib-jdk7",
-        version = rootProject.properties["kotlin_version"].toString()
+            group = "org.jetbrains.kotlin",
+            name = "kotlin-stdlib-jdk7",
+            version = rootProject.properties["kotlin_version"].toString()
     )
 
     implementation("androidx.appcompat:appcompat:1.0.2")
     implementation("androidx.core:core-ktx:1.0.2")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+
     implementation("com.github.bumptech.glide:glide:4.9.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.9.0")
 
@@ -138,10 +159,9 @@ dependencies {
 //    implementation("", name = "mylibrary-1.0.0", ext = "aar")
 
     implementation("com.yunji.library:mylibrary:1.0.3")
+    implementation("org.kodein.di:kodein-di-generic-jvm:6.3.2")
+//    implementation(project(":mylibrary"))
 }
-
-
-
 
 
 //apply from : "variant.gradle.kts"
@@ -185,3 +205,4 @@ dependencies {
 //    implementation 'com.github.bumptech.glide:glide:4.9.0'
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 //}
+

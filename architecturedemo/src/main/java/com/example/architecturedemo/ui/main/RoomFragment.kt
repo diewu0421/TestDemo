@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.architecturedemo.R
+import com.example.architecturedemo.room.DataViewModel
 import com.google.android.gms.plus.PlusOneButton
 
 /**
@@ -51,6 +53,10 @@ class RoomFragment : Fragment() {
             "RoomFragment",
             "viewModel is ${ViewModelProviders.of(this).get(MainViewModel::class.java)}"
         )
+        val viewModel = ViewModelProviders.of(this).get(DataViewModel::class.java)
+
+//        viewModel.listData.observe(this, Observer {  })
+
 
         view.findViewById<View>(R.id.room).setOnClickListener {
 

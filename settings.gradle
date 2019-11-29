@@ -1,2 +1,20 @@
-include ':app', ':webview', ':coordinate', ':onactivityresult', ':turntabledemo', ':architecturedemo', ':inflatefactory', ':mylibrary'
+include ':app', ':webview', ':coordinate', ':onactivityresult', ':turntabledemo', ':architecturedemo', ':inflatefactory', ':mylibrary', ':rxjava', ':gsydemo', ':aopdemo', ':frameworkdemo', ':touchdelegate', ':fueldemo',
+        ":yjlive"
+
+project(":yjlive").projectDir = new File("./yjfound/yjlive")
+//gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
+//    @Override
+//    void beforeEvaluate(Project project) {
+//        println("beforevaluate = $project")
+//    }
+//
+//    @Override
+//    void afterEvaluate(Project project, ProjectState state) {
+//
+//        println("aftervaluate = $project state = $state")
+//    }
+//})
+
+println("gradle home dir ${gradle.gradleHomeDir}")
+println("gradle user home dir ${gradle.gradleUserHomeDir}")
 

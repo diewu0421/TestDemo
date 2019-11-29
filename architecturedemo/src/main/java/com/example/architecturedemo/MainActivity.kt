@@ -6,17 +6,18 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.DocumentsContract
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.*
+import com.example.architecturedemo.room.DataViewModel
+import com.example.architecturedemo.room.WeatherResult
 import com.example.architecturedemo.ui.main.MainFragment
 import com.example.architecturedemo.ui.main.RoomFragment
+import com.example.architecturedemo.view.NewItemView
 import kotlinx.android.synthetic.main.main_activity.*
 
-class MainActivity : AppCompatActivity(), LifecycleObserver ,RoomFragment.OnFragmentInteractionListener{
+class MainActivity : AppCompatActivity(), LifecycleObserver ,LifecycleOwner,RoomFragment.OnFragmentInteractionListener{
+
     override fun onFragmentInteraction(uri: Uri) {
 
         Log.e("MainActivity","uri = $uri")
@@ -36,21 +37,27 @@ class MainActivity : AppCompatActivity(), LifecycleObserver ,RoomFragment.OnFrag
 
         room.setOnClickListener {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container,RoomFragment.newInstance("111","222)"))
+                .replace(R.id.container,RoomFragment.newInstance("a111","b222)"))
                 .commitNow()
-
-//            startActivity(Intent(this,Main2Activity::class.java).apply {
-//            })
-
         }
+
+        val model = ViewModelProviders.of(this).get(DataViewModel::class.java)
+        Log.e("MainActivity","model = $model")
+        model.listData.observe(this, Observer {
+            Log.e("MainActivity","observer  $it")
+        })
+        val model1 = ViewModelProviders.of(this).get(DataViewModel::class.java)
+        Log.e("MainActivity","model = $model1")
+
+        NewItemView().bindData(tv, "str")
+
+
 
         setResult.setOnClickListener {
             startActivityForResult(Intent(this, Main2Activity::class.java),1001)
         }
 //        startService(Intent(this,MyService::class.java))
         Toast.makeText(this,"11x111111fasf",Toast.LENGTH_SHORT).show()
-        Log.e("MainActivity","asdfasf")
-        Log.e("MainActivity","asdfasf")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

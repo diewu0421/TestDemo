@@ -6,9 +6,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="测试room" android:id="@+id/room"/>
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="测试room"
+            android:id="@+id/room"/>
 
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="测试setResult2222222222222222222333333333333333333333" android:id="@+id/setResult" android:layout_marginTop="40dp"/>
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="测试setResult2222222222222222222333333333333333333333"
+            android:id="@+id/setResult"
+            android:layout_marginTop="40dp"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="我是需求"
+              android:id="@+id/tv"
+              android:layout_marginTop="120dp"/>
+
 </FrameLayout>

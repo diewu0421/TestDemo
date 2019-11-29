@@ -9,63 +9,74 @@
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
-            android:layout_height="@dimen/app_bar_height"
+            android:layout_height="300dp"
             android:layout_width="match_parent"
     >
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/toolbar_layout"
+        <!--<com.google.android.material.appbar.CollapsingToolbarLayout-->
+        <!--android:id="@+id/toolbar_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_scrollFlags="scroll|exitUntilCollapsed">-->
+
+
+        <ImageView android:layout_width="match_parent"
+                   android:layout_height="250dp"
+                   app:layout_scrollFlags="scroll|enterAlways"
+                   android:src="@mipmap/ic_launcher_round"/>
+
+
+
+        <!--<androidx.appcompat.widget.Toolbar-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:minHeight="?attr/actionBarSize"-->
+        <!--android:layout_width="match_parent"-->
+        <!--app:titleMarginStart="0dp"-->
+        <!--app:contentInsetLeft="0dp"-->
+        <!--app:contentInsetStart="0dp"-->
+        <!--app:title="asdfasdfasd"-->
+        <!--app:subtitle="asdfasdf">-->
+
+
+        <!--<androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@mipmap/ic_launcher_round"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--/>-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="我是toolbar标题"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--/>-->
+        <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+        <!--</androidx.appcompat.widget.Toolbar>-->
+
+        <!--</com.google.android.material.appbar.CollapsingToolbarLayout>-->
+        <com.google.android.material.tabs.TabLayout
                 android:layout_width="match_parent"
-                app:toolbarId="@id/toolbar"
-                android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        >
-
-
-            <ImageView android:layout_width="match_parent" android:layout_height="300dp"
-            android:src="@mipmap/ic_launcher_round"/>
-            <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_height="?attr/actionBarSize"
-                    android:minHeight="?attr/actionBarSize"
-                    android:layout_width="match_parent"
-                    app:layout_collapseMode="pin"
-                    app:titleMarginStart="0dp"
-                    app:contentInsetLeft="0dp"
-                    app:contentInsetStart="0dp"
-                    app:title="asdfasdfasd"
-                    app:subtitle="asdfasdf"
-            >
-
-
-                <!--<androidx.constraintlayout.widget.ConstraintLayout-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="match_parent">-->
-
-                    <!--<ImageView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:src="@mipmap/ic_launcher_round"-->
-                            <!--app:layout_constraintTop_toTopOf="parent"-->
-                            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--/>-->
-
-                    <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:text="我是toolbar标题"-->
-                            <!--app:layout_constraintTop_toTopOf="parent"-->
-                            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-                            <!--app:layout_constraintStart_toStartOf="parent"-->
-                            <!--app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--/>-->
-                <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+                android:layout_height="50dp"
+                android:background="#f00"
+                android:id="@+id/tb"/>
     </com.google.android.material.appbar.AppBarLayout>
+    <!--<include layout="@layout/content_scrolling"/>-->
 
-    <include layout="@layout/content_scrolling"/>
+    <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:id="@+id/vp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"

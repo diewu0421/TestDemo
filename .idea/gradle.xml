@@ -8,17 +8,25 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/aopdemo" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/architecturedemo" />
             <option value="$PROJECT_DIR$/coordinate" />
+            <option value="$PROJECT_DIR$/frameworkdemo" />
+            <option value="$PROJECT_DIR$/fueldemo" />
+            <option value="$PROJECT_DIR$/gsydemo" />
             <option value="$PROJECT_DIR$/inflatefactory" />
             <option value="$PROJECT_DIR$/mylibrary" />
             <option value="$PROJECT_DIR$/onactivityresult" />
+            <option value="$PROJECT_DIR$/rxjava" />
+            <option value="$PROJECT_DIR$/touchdelegate" />
             <option value="$PROJECT_DIR$/turntabledemo" />
             <option value="$PROJECT_DIR$/webview" />
+            <option value="$PROJECT_DIR$/yjfound/yjlive" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

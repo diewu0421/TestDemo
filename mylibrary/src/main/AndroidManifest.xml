@@ -1,2 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.mylibrary"/>
+          package="com.example.mylibrary" android:versionName="zenglw">
+
+
+
+</manifest>

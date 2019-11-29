@@ -1,6 +1,9 @@
+import groovy.util.slurpersupport.GPathResult
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+
 
 android {
     compileSdkVersion 28
@@ -40,6 +43,56 @@ dependencies {
     compile "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+
+tasks.create("parse").doLast {
+    def xparse = new XmlSlurper()
+    def file = new File("/Users/zlw/IntelliJIDEAProjects/TestDemo/mylibrary/src/main/AndroidManifest.xml")
+//    def file = new File("")
+    println("absolutePath : ${file.absolutePath}")
+    GPathResult result = xparse.parse(file)
+    println "versionName : ${result.@'android:versionName'}"
+//    def book4 = result.value.books.book[3]
+//    println "book4 = $book4  book.author : ${book4.author}  book.availabel : ${book4.@available} book.id : ${book4.@id}"
+}
+
+gradle.taskGraph.whenReady { graph ->
+
+    List<Action> actions = tasks.getByName("assembleRelease").actions
+
+//    actions.add {
+//        println("我是一个action")
+//    }
+    actions.add(new Action<Task>() {
+        @Override
+        void execute(Task task) {
+            println("我给${task.name}添加了一个actioin")
+        }
+    })
+    println("actions = \n $actions")
+
+
+
+}
+
+println "versionname : ${android.defaultConfig.versionName}"
+
+
+
+gradle.beforeProject {
+    println "beforeProject"
+}
+gradle.afterProject {
+    println "afterProject"
+}
+
+gradle.buildFinished {
+    println "buildFiinished"
+}
+println("root project dir : ${getRootProject().getRootDir()}  ${getRootDir()}")
+gradle.buildStarted {
+    println "buildStarted"
+}
+
 repositories {
     mavenCentral()
 }
