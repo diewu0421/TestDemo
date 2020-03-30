@@ -57,7 +57,7 @@ allprojects {
             url 'https://jitpack.io'
         }
         maven {
-            url "https://github.com/zlwmaven/zlwFirstMaven/raw/master"
+            url "https://github.com/zlwmaven/zlwFirstMaven/raw/dev"
         }
     }
 }

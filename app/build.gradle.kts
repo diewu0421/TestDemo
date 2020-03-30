@@ -10,17 +10,6 @@ plugins {
 infix fun BaseExtension . complie(version: Int) {
     compileSdkVersion(version)
 }
-fun getApkVersionName(): String {
-
-    val stout = org.apache.commons.io.output.ByteArrayOutputStream()
-    exec {
-        commandLine(listOf("git", "describe", "--abbrev=0", "--tags"))
-        standardOutput = stout
-    }
-    println("apkverisonname = ${stout.toString()}")
-
-    return stout.toString().replace("\n", "", false) + "zlw"
-}
 
 fun Any?.printObject() {
     println("${this?.javaClass?.simpleName} = $this")
@@ -34,7 +23,7 @@ android {
         minSdkVersion(15)
         targetSdkVersion(28)
         versionCode = 1
-        versionName = getApkVersionName()
+        versionName = "0.2.3"
         resConfigs("zh", "xxxhdpi")
     }
 
@@ -158,7 +147,7 @@ dependencies {
     //引入aar
 //    implementation("", name = "mylibrary-1.0.0", ext = "aar")
 
-    implementation("com.yunji.library:mylibrary:1.0.3")
+    implementation("com.yunji.library:mylibrary:1.0.5")
     implementation("org.kodein.di:kodein-di-generic-jvm:6.3.2")
 //    implementation(project(":mylibrary"))
 }

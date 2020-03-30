@@ -15,5 +15,14 @@ class MyUtils {
                 println("fixed bug object = $any")
             }
         }
+
+        @JvmStatic
+        fun testNewVersion() {
+            println("我是1.0.4")
+        }
+        @JvmStatic
+        fun testNewVersion2() {
+            println("我是1.0.5")
+        }
     }
 }

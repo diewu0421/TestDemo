@@ -133,12 +133,12 @@ artifacts {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url:"file:///Users/zlw/IntelliJIDEAProjects/TestDemo/app/libs")
+            repository(url:"file:///home/zlw/IntelliJIDEAProjects/TestDemo/app/libs")
 
             pom.project {
                 groupId 'com.yunji.library'
                 artifactId = "mylibrary"
-                version "1.0.3"
+                version "1.0.5"
             }
 
         }

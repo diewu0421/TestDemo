@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             Log.e("MainActivity","name = ${this.localClassName}")
         }
 
-        MyUtils.printObject("Nihao")
+        MyUtils.testNewVersion2()
         //内存泄漏
                 val handler = Handler()
         handler.postDelayed({
