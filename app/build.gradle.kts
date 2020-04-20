@@ -18,10 +18,11 @@ fun Any?.printObject() {
 android {
 
     signingConfigs {
+        println("path is ${gradle.rootProject.rootDir}")
         create("debugConfig") {
             keyAlias = "webp"
             keyPassword = "buzhidao"
-            storeFile = File("/home/zlw/IntelliJIDEAProjects/TestDemo/app/webp.jks")
+            storeFile = File("${gradle.rootProject.rootDir}/app/webp.jks")
             storePassword = "buzhidao"
             isV2SigningEnabled = true
         }
