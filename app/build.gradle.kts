@@ -16,6 +16,16 @@ fun Any?.printObject() {
 }
 
 android {
+
+    signingConfigs {
+        create("debugConfig") {
+            keyAlias = "webp"
+            keyPassword = "buzhidao"
+            storeFile = File("/home/zlw/IntelliJIDEAProjects/TestDemo/app/webp.jks")
+            storePassword = "buzhidao"
+            isV2SigningEnabled = true
+        }
+    }
     //    compileSdkVersion Z(28)
     complie(28)
     defaultConfig {
@@ -64,6 +74,7 @@ android {
             }
 
             buildTypes.getByName("debug") {
+                signingConfig = signingConfigs.getByName("debugConfig")
                 resValue("string", "yj_found_chinese", "我是华为debug")
 //                println("\n------------------------------------------------\nhw buildtypes is ${this}")
 
@@ -100,7 +111,7 @@ android {
         println("**********************" + this.outputs)
         outputs.all {
             if (this is ApkVariantOutputImpl) {
-                outputFileName = "Nihasf.apk"
+                outputFileName = "webptest.apk"
             }
         }
     }
@@ -140,16 +151,13 @@ dependencies {
     implementation("androidx.core:core-ktx:1.0.2")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
-    implementation("com.github.bumptech.glide:glide:4.9.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.9.0")
-
 
     //引入aar
 //    implementation("", name = "mylibrary-1.0.0", ext = "aar")
 
-    implementation("com.yunji.library:mylibrary:1.0.5")
+//    implementation("com.yunji.library:mylibrary:1.0.5")
     implementation("org.kodein.di:kodein-di-generic-jvm:6.3.2")
-//    implementation(project(":mylibrary"))
+    implementation(project(":mylibrary"))
 }
 
 

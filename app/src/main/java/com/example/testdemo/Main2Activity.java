@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.core.widget.PopupWindowCompat;
-import com.bumptech.glide.load.engine.Resource;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -21,6 +20,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        String[] arg = new String[]{"nihao", "asdf"};
 
         getWindow().getDecorView().post(new Runnable() {
             @Override
