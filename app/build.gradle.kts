@@ -140,14 +140,12 @@ dependencies {
     implementation("androidx.core:core-ktx:1.0.2")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
-    implementation("com.github.bumptech.glide:glide:4.9.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.9.0")
-
+    implementation(project(":mylibrary"))
 
     //引入aar
 //    implementation("", name = "mylibrary-1.0.0", ext = "aar")
 
-    implementation("com.yunji.library:mylibrary:1.0.5")
+//    implementation("com.yunji.library:mylibrary:1.0.5")
     implementation("org.kodein.di:kodein-di-generic-jvm:6.3.2")
 //    implementation(project(":mylibrary"))
 }
