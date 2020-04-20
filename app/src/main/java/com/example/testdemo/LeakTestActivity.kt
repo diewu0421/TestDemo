@@ -1,47 +1,37 @@
 package com.example.testdemo
 
 import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_leak_test.*
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 
+/**
+ * 浙江集商优选电子商务有限公司
+ * @author zenglw
+ * @date   2020-04-17 14:49
+ */
 class LeakTestActivity : AppCompatActivity() {
+
 //    companion object {
         var drawable: Drawable? = null
-
 //    }
 
-//    private lateinit var iv: ImageView
-
-
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_leak_test)
+        drawable = getDrawable(R.drawable.test)
 
-        drawable = getDrawable(R.drawable.ic_launcher_background)
-
-//        iv = ImageView(this)
-//        iv.layoutParams = ViewGroup.LayoutParams(-2, -2)
-        iv.setImageDrawable(drawable)
-        iv.setOnClickListener {
-            Log.e("LeakTestActivity","onCreate 123411111111111")
-
-//            Log.e("LeakTestActivity","onCreate asdfasdf")
-            test()
-        }
+        setContentView(ImageView(this).apply {
+            setImageDrawable(drawable)
+        })
     }
 
-    private fun test(){
-        Toast.makeText(this , "Teasdfas ", Toast.LENGTH_LONG).show()
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        iv.setImageDrawable(null)
-        drawable = null
+    override fun finish() {
+//        drawable?.toBitmap()
+//        drawable = null
+        super.finish()
     }
 }

@@ -151,6 +151,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.0.2")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
+    implementation(project(":mylibrary"))
 
     //引入aar
 //    implementation("", name = "mylibrary-1.0.0", ext = "aar")
