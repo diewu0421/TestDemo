@@ -27,12 +27,12 @@ android {
             isV2SigningEnabled = true
         }
     }
-    //    compileSdkVersion Z(28)
-    complie(28)
+//        compileSdkVersion Z(28)
+    complie(29)
     defaultConfig {
         applicationId = "com.example.testdemo"
         minSdkVersion(15)
-        targetSdkVersion(28)
+        targetSdkVersion(29)
         versionCode = 1
         versionName = "0.2.3"
         resConfigs("zh", "xxxhdpi")
@@ -106,6 +106,8 @@ android {
     dataBinding {
         isEnabled = true
     }
+
+    buildToolsVersion = "29.0.2"
 
 
     android.applicationVariants.all {

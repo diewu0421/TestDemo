@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f00"
-    tools:context=".LeakTestActivity">
-
-    <ImageView
-        android:id="@+id/iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    tools:context=".launchmode.LaunchModeActivityB">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#f0f"
-        android:text="adfa1asdfasdf11111sf" />
+        android:onClick="jumpA"
+        android:text="我是B页面"/>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#f00"
-        android:text="adfa1asdfasdf11111sf" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
+        android:onClick="close"
+        android:text="关闭B页面"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
