@@ -32,7 +32,6 @@ class LaunchModeActivityA : AppCompatActivity() {
 //        Thread.sleep(20 * 1000L)
 
         registerReceiver(myReceiver, IntentFilter("action1"))
-        root.post {  }
     }
 
     fun jump(view: View) {
