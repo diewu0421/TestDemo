@@ -63,7 +63,11 @@ dependencies {
 
     api "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
     api "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    api "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.2.0"
 
+    api "io.reactivex.rxjava3:rxjava:3.0.6"
+    api 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    api "androidx.multidex:multidex:2.0.1"
 }
 
 tasks.create("parse").doLast {
