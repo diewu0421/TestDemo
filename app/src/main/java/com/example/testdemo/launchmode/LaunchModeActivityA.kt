@@ -11,7 +11,6 @@ import android.os.Handler
 import android.os.SystemClock
 import android.util.Log
 import android.view.View
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.testdemo.R
 import kotlinx.android.synthetic.main.activity_main2.*
 import java.io.File
@@ -89,7 +88,7 @@ class LaunchModeActivityA : AppCompatActivity() {
         super.onDestroy()
         Log.e("LaunchModeActivityA","onDestroy ")
         myReceiver?.let {
-            LocalBroadcastManager.getInstance(this).unregisterReceiver(it)
+//            LocalBroadcastManager.getInstance(this).unregisterReceiver(it)
         }
     }
 }

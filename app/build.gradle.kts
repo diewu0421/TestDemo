@@ -162,6 +162,7 @@ dependencies {
 //    implementation("com.yunji.library:mylibrary:1.0.5")
     implementation("org.kodein.di:kodein-di-generic-jvm:6.3.2")
     implementation(project(":mylibrary"))
+    implementation(kotlin("reflect",rootProject.properties["kotlin_version"].toString()))
 }
 
 

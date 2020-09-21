@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'android-aspectjx'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'com.xuexiang.xaop' //引用xaop插件
+apply plugin: 'android-aspectjx'
+apply plugin: 'com.xuexiang.xaop'
 android {
     compileSdkVersion 28
 
 
     defaultConfig {
         applicationId "com.example.aopdemo"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"

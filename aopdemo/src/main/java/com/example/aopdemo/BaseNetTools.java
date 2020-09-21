@@ -11,6 +11,10 @@ import com.xuexiang.xaop.annotation.Safe;
  */
 public class BaseNetTools {
 
+    public BaseNetTools() {
+        Log.d("BaseNetTools","BaseNetTools ");
+    }
+
     public String getUrl(String url) {
 ////        try {
 ////
