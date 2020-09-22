@@ -68,6 +68,11 @@ dependencies {
     api "io.reactivex.rxjava3:rxjava:3.0.6"
     api 'io.reactivex.rxjava3:rxandroid:3.0.0'
     api "androidx.multidex:multidex:2.0.1"
+    // Kotlin + coroutines
+    api "androidx.work:work-runtime-ktx:2.4.0"//kotlin 选这个
+
+    // optional - RxJava2 support
+    api "androidx.work:work-rxjava2:2.4.0"//配合rxjava2 使用
 }
 
 tasks.create("parse").doLast {
