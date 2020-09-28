@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.text.PrecomputedText
 import android.util.Log
@@ -25,9 +26,11 @@ import io.reactivex.rxjava3.core.Scheduler
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_layout.*
 import kotlinx.coroutines.*
+import java.io.File
 import java.lang.Runnable
 import java.time.Duration
 import java.util.concurrent.TimeUnit
+import java.util.jar.Manifest
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,15 +38,26 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        File(("${getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)}${File.separatorChar}testCreate.txt"))
+            .let { it ->
+                if (!it.exists()) {
+                    it.createNewFile().also {
+                        Log.e("MainActivity","onCreate createNewFile $it")
+                    }
+                }
+
+                it.writeText("11111")
+            }
+
         val combinedArraySet = arraySetOf(1, 2, 3) + arraySetOf(4, 5, 6)
         println("combi ${combinedArraySet}")
-
 
         supportFragmentManager.commit {
             addToBackStack("...")
             setCustomAnimations(R.anim.fragment_open_enter, R.anim.fragment_close_exit)
             add(root.id, MyFragment(), "...")
-
         }
     }
 }

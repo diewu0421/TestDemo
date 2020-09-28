@@ -1,3 +1,4 @@
+include ':coroutinedemo'
 include ':recyclerviewdemo'
 include ':app', ':webview', ':coordinate', ':onactivityresult', ':turntabledemo', ':architecturedemo', ':inflatefactory', ':mylibrary', ':rxjava', ':gsydemo', ':aopdemo', ':frameworkdemo', ':touchdelegate', ':fueldemo',
         ":yjlive"
