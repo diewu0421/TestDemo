@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.d
+import io.reactivex.Flowable
+
 //import io.reactivex.Observable
 //import io.reactivex.functions.Consumer
 //import io.reactivex.subjects.BehaviorSubject
@@ -25,6 +27,16 @@ class MainActivity : AppCompatActivity() {
 //                Log.e("MainActivity","it = ${it.name}")
 //            })
 
+
+        Flowable.just(1,2,3)
+            .take(2)
+            .map {
+                Log.e("MainActivity","onCreate map $it")
+                it
+            }
+            .subscribe {
+                Log.e("MainActivity","onCreate $it")
+            }
         
     }
 }
