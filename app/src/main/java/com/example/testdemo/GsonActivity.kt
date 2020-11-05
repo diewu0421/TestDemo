@@ -23,9 +23,9 @@ class GsonActivity : AppCompatActivity() {
 
                     runCatching {
                         val person = Gson().fromJson<Person1>(json, Person1::class.java)
-                        Log.e("GsonActivity","onCreate person = $person")
+                        Log.e("GsonActivity","onCreate111111111 person = $person")
                     }.onFailure {
-                        Log.e("GsonActivity","onCreate $it")
+                        Log.e("GsonActivity","onCreate1111111111111 $it")
 
                     }
 
