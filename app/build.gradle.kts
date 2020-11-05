@@ -33,6 +33,7 @@ android {
         applicationId = "com.example.testdemo"
         minSdkVersion(15)
         targetSdkVersion(29)
+        multiDexEnabled = true
         versionCode = 1
         versionName = "0.2.3"
         resConfigs("zh", "xxxhdpi")

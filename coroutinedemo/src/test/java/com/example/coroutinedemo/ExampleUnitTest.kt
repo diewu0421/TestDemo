@@ -1,11 +1,18 @@
 package com.example.coroutinedemo
 
+import android.renderscript.Sampler
+import io.reactivex.Emitter
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.actor
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import org.junit.Test
 
 import org.junit.Assert.*
+import java.lang.IndexOutOfBoundsException
 import java.lang.System.currentTimeMillis
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.system.measureTimeMillis
 import kotlin.time.measureTime
 
@@ -169,23 +176,242 @@ class ExampleUnitTest {
 //            log("Now processing of the request is complete")
 
 
-            (1..3).asFlow().take(2).onEach { delay(1000) }
-                .flatMapConcat {
-                    flow {
-//                        emit("$it : first")
-//                        delay(1000)
-//                        emit("$it: last")
-                        emit("emit $it")
-                    }
+//            runCatching{
+//                supervisorScope<String> {
+//                    launch {
+//                        try {
+//                            log("the child is sleeping")
+//                            delay(Long.MAX_VALUE)
+//                        }finally {
+//                            log("child is cancelled")
+//                        }
+//                    }
+//
+//                    yield()
+//                    log("parent")
+//                    throw AssertionError()
+//                }
+//
+//            }.onFailure {
+//                log("Caught an assertion error!")
+//            }
 
-                }
-                .collect {
-                    log("coole $it")
-                }
+//            val single = newSingleThreadContext("new")
 
+
+//            val actor = counterActor()
+//            val incCounter = IncCounter
+//
+//            withContext(Dispatchers.Default) {
+//                missRun {
+//                    actor.send(incCounter)
+//                }
+//            }
+//
+//            val completableDeferred = CompletableDeferred<Int>()
+//            actor.send(GetCounter(completableDeferred))
+//
+//            log("start await")
+//            log("count1 = ${completableDeferred.await()}")
+//            log("11111111111111111111111111")
+//            actor.close()
+////            simple().forEach {
+//                log("value $it")
+//            }
+
+//            launch {
+//                for (k in 1..3) {
+//
+//                    log("I'm not blocked $k")
+//                    delay(1000)
+//                }
+//            }
+//
+//            simple().collect {
+//                log("value $it")
+//            }
+
+//            val simple  = simple()
+//            log("Calling collect")
+//            simple.collect{ log("value111 $it")}
+//            log("again")
+//            simple.collect { log("value222 $it")}
+
+
+//            withTimeout(2500L) {
+//                simple().collect {
+//                    log("value = $it")
+//                }
+//            }
+
+//            val sample = simple()
+//
+//            launch {
+//                delay(2000L)
+//                log("launch")
+//            }
+//            sample.collect {log("value = $it")}
+
+//            testBlockMain()
+
+
+//            val startTime = System.currentTimeMillis() // 记录开始时刻
+//            (1..3).asFlow().onEach { delay(100) } // 每隔 100 ms 发射一个数值
+////                .flatMapConcat { requestFlow(it) }
+//                .flatMapMerge(Int.MAX_VALUE) { requestFlow(it) }
+////                .flatMapLatest { requestFlow(it) }
+//                .collect { value -> // 收集最后结果, 并输出
+//                    println("$value at ${System.currentTimeMillis() - startTime} ms from start")
+
+//                }
+
+            suspend fun doOne(): Int {
+                delay (1000L)
+                return 23
+            }
+
+            suspend fun doTwo(): Int {
+                delay (1000L)
+                return 17
+            }
+
+            suspend fun CoroutineScope.missSum() = coroutineScope {
+                    val one = async {doOne()}
+                val two = async{doTwo()}
+
+                one.await() + two.await()
+                }
+            val totalTime = measureTimeMillis {
+
+//                val one = doOne()
+//                val two = doTwo()
+//                log("sum = ${one.await() + two.await()}")
+                log("sum time = ${missSum()}")
+            }
+            log("totaltime = $totalTime")
+
+
+//            CoroutineScope(CoroutineExceptionHandler{ _, throwable ->
+//
+//                log("parent error ${throwable}")
+//            }+ CoroutineName("myscope") +  Dispatchers.Default ).run {
+////             {
+//
+//                val one = launch(CoroutineExceptionHandler {_, _ ->
+//                    log("error")
+//                }) {
+//                    log("launch one")
+//                    throw IllegalAccessError()
+//                }
+//
+//                launch {
+//                    try {
+//
+//                        delay (Long.MAX_VALUE)
+//                    } finally {
+//                        log("second child is cancelled")
+//                    }
+//                }
+//
+//                one.join()
+//
+//                log("parent is still running")
+//
+////                launch {
+////
+////                }
+//
+//            }
+//
+////            delay(Long.MAX_VALUE)
+////            joinAll()
         }
     }
 }
+fun requestFlow(i: Int): Flow<String> = flow {
+    emit("$i: First")
+    delay(500) // 等待 500 ms
+    emit("$i: Second")
+}
+fun l(it: Any) = log("collect $it")
+
+
+fun CoroutineScope.testBlockMain() {
+    launch {
+        for (i in 1..3) {
+            delay(1000L)
+            log("main $i")
+        }
+    }
+}
+
+fun simple(): Flow<Int> = flow {
+//    log("start-------------")
+    for (i in 1..3) {
+        delay(100L)
+//        Thread.sleep(1000L)
+//        log("emit $i")
+        emit(i)
+    }
+}
+
+suspend fun simple1(): List<Int> {
+    delay(1000L)
+    return listOf(1, 2, 3,)
+}
+
+//fun simple()  = sequence<Int> {
+//
+//    for (i in 1..3) {
+//       Thread.sleep(1000L)
+//        yield(i)
+//    }
+//}
+
+
+fun CoroutineScope.counterActor() = actor<CounterMsg> {
+
+    var counter = 0
+
+    for (msg in channel) {
+
+        when (msg) {
+            is IncCounter -> {
+
+                counter++
+            }
+            is GetCounter -> msg.response.complete(counter)
+        }
+    }
+}
+
+sealed class CounterMsg
+
+object IncCounter : CounterMsg()
+
+class GetCounter(val response: CompletableDeferred<Int>) : CounterMsg()
+
+//@Volatile
+//var count = AtomicInteger()
+val mutex = Mutex()
+
+var count = 0
+
+suspend fun missRun(action: suspend () -> Unit) {
+    val n = 1000
+    val k = 10000
+    val time = measureTimeMillis {
+        coroutineScope {
+            repeat(n) {
+                launch {
+                    repeat(k) { action() }
+                }
+            }
+        }
+    }
+    log("time = $time")
+}
+
 fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
 suspend fun doOneThing(): Int {
     delay(1000L)

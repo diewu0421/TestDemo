@@ -74,6 +74,13 @@ dependencies {
 
     // optional - RxJava2 support
     api "androidx.work:work-rxjava2:2.4.0"//配合rxjava2 使用
+    api "com.google.code.gson:gson:2.8.5"
+
+    //core
+    api 'com.github.kittinunf.fuel:fuel:2.2.0'
+
+    //packages
+    api 'com.github.kittinunf.fuel:fuel-coroutines:2.2.0'
 }
 
 tasks.create("parse").doLast {

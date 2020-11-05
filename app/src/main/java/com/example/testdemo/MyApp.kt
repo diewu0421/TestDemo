@@ -1,10 +1,12 @@
 package com.example.testdemo
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
+import androidx.multidex.MultiDex
 
 /**
  * 浙江集商优选电子商务有限公司
@@ -19,6 +21,11 @@ class MyApp: Application() {
         Log.e("MyApp","onCreate $this")
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(mProcessLifeObserver)
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(base)
     }
 }
 
